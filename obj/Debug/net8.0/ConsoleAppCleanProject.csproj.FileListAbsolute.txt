@@ -1,0 +1,14 @@
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/bin/Debug/net8.0/ConsoleAppCleanProject
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/bin/Debug/net8.0/ConsoleAppCleanProject.deps.json
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/bin/Debug/net8.0/ConsoleAppCleanProject.runtimeconfig.json
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/bin/Debug/net8.0/ConsoleAppCleanProject.dll
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/bin/Debug/net8.0/ConsoleAppCleanProject.pdb
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.GeneratedMSBuildEditorConfig.editorconfig
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.AssemblyInfoInputs.cache
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.AssemblyInfo.cs
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.csproj.CoreCompileInputs.cache
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.dll
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/refint/ConsoleAppCleanProject.dll
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.pdb
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ConsoleAppCleanProject.genruntimeconfig.cache
+/Users/munirudeenakanbi/RiderProjects/ConsoleAppCleanProject/obj/Debug/net8.0/ref/ConsoleAppCleanProject.dll
