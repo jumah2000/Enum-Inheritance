@@ -1,27 +1,28 @@
-using ConsoleAppCleanProject.Domain;
-using ConsoleAppCleanProject.Services.StudentService;
+﻿using ConsoleAppCleanProject.Domain;
+using ConsoleAppCleanProject.Domain.Services;
 
 namespace ConsoleAppCleanProject.UserHandler;
 
-public static class StudentUserInputHandler
+public static class VendorUserInputHandler
 {
     //Entry point for the student management menu
-    public static void Run()
+  public static void Run()
     {
         {
             Console.Clear();
-            Console.WriteLine("====== STUDENT MANAGEMENT =====");
+            Console.WriteLine("======VENDOR MANAGEMENT =====");
             
             //Ask the user to enter Admin Credentials
 
+            Console.WriteLine("=======VENDOR MANAGEMENT======");
             Console.Write("Enter Admin ID: ");
             var adminId = Console.ReadLine();
             Console.Write("Enter Password: ");
             var password = Console.ReadLine();
-            
-            
+
+
             //Validate the admin credential using the service layer
-            if (StudentServiceRepository.ValidateAdmin(adminId, password))
+            if (VendorServiceRepository.ValidateAdmin(adminId, password))
             {
                 Console.WriteLine("Login successful!");
                 Console.WriteLine("Press any key to continue...");
@@ -32,114 +33,117 @@ public static class StudentUserInputHandler
                 Console.WriteLine("Invalid Admin credentials!");
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
-                
+
                 //Go back to ask for credentials
             }
-            
+
             //Variable to control the inner menu loop
             bool running = true;
             while (running)
             {
                 // Display the menu options
                 Console.Clear();
-                Console.WriteLine("====== STUDENT MENU =====");
-                Console.WriteLine("\n1. Add Student\n2. Get Student by ID\n3. View All Students\n4. Delete Student\n5. Back to Main Menu");
+                Console.WriteLine("======VENDOR MENU =====");
+                Console.WriteLine("Select option: ");
+                Console.WriteLine("1. Add Vendor");
+                Console.WriteLine("2. Get Vendor by ID");
+                Console.WriteLine("3. View All Vendors");
+                Console.WriteLine("4. Delete Vendor");
+                Console.WriteLine("5. Exit");
+                
                 Console.Write("Select option: ");
                 var option = Console.ReadLine();
+
                 // Handle the user's choice using a switch statement
                 switch (option)
                 {
-                    //Add student
-                    case "1":     
-                        Console.Write("Name: ");
+                    //Add Vendor
+                    case "1":
+                        Console.Write("Enter name: ");
                         var name = Console.ReadLine();
 
-                        Console.Write("Age: ");
+                        Console.Write("Enter age: ");
                         var ageInput = Console.ReadLine();
 
-                        Console.Write("Address: ");
+                        Console.Write("Enter address: ");
                         var address = Console.ReadLine();
-
-                        Console.WriteLine("Select Gender (1. Male, 2. Female): ");
-                        var genderInput = Console.ReadLine();
-                        // user input to gender enum safely
                         
-                        if (!Enum.TryParse(genderInput, out Gender gender))
+
+                        Console.WriteLine("Select Gender:\n1. Male\n2. Female");
+                        var genderChoice = Console.ReadLine();
+                        // user input to gender enum safely
+                        if (!Enum.TryParse<Gender>(genderChoice, out var gender))
                         {
-                            Console.WriteLine("Invalid gender. Try again.");
+                            Console.WriteLine("Invalid gender input. Try again.");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             continue;
                         }
-                        //Add the student using the service layer
+                        //Add the vendor using the service layer
+                       
                         Console.WriteLine("\n=========NEW STUDENT INCOMING===== ");
-
-                       StudentServiceRepository.AddStudent(name, ageInput, address, gender);
-                        Console.WriteLine("Student added successfully!");
-                        Console.WriteLine("Press any key to continue...");
-                        Console.ReadKey();
+                        VendorServiceRepository.AddVendor(name, ageInput, address, gender );
+                        Console.WriteLine("Vendor added successfully!");
                         break;
                     
                     //Get student by Id
                     case "2":
                         Console.Clear();
-                        Console.WriteLine("\n========FETCHING STUDENT BY ID======");
-                        Console.Write("Enter Student ID: ");
+                        Console.WriteLine("\n========FETCHING VENDOR BY ID======");
+                        Console.Write("Enter Vendor ID: ");
                         var id = Console.ReadLine();
                         // store returned value
-                       var student = StudentServiceRepository.GetStudentById(id);
-                        if (student != null)
+                        var vendor = VendorServiceRepository.GetVendorById(id);
+                        if (vendor != null)
                         {
-                            Console.WriteLine($"\nStudent Found: {student.Name}.\nAge: {student.Age}.\nGender: {student.Gender}.\nStudentId: {student.StudentId}");
+                            Console.WriteLine($"Vendor Found: {vendor.Name}.\nAge: {vendor.Age}.\nAddress: {vendor.Address}.\nGender: {vendor.Gender}.\nVendorID: {vendor.VendorId}.");
                         }
                         else
                         {
-                            Console.WriteLine("\nStudent not found.");
+                            Console.WriteLine("Vendor not found.");
                         }
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
                         break;
 
-
-                    case "3": 
+                    case "3":
                         // view all students
                         Console.Clear();
-                        Console.WriteLine("======RETRIEVING ALL REGISTERED STUDENTS=======");
-                      var students =  StudentServiceRepository.GetAllStudents();
-                        if (students.Count == 0)
+                        Console.WriteLine("======RETRIEVING ALL REGISTERED VENDORS=======");
+                        var allVendors = VendorServiceRepository.GetAllVendors();
+                        if (allVendors.Count == 0)
                         {
-                            Console.WriteLine("\nNo students found.");
-                            
+                            Console.WriteLine("No vendors available.");
                         }
                         else
                         {
-                            foreach (var s in students)
+                            foreach (var v in allVendors)
                             {
-                                Console.WriteLine($"\nStudent Name: {s.Name}.\nAge: {s.Age}.\nGender: {s.Gender}.\nStudentId: {s.StudentId}");
+                                Console.WriteLine($"\nName: {v.Name}.\nAge: {v.Age}.\nAddress: {v.Address}.\nGender: {v.Gender}.\nVendorID: {v.VendorId}.");
                             }
                         }
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
                         break;
- 
+                    
                     case "4":
-                        //Delete student
+                        //Delete vendor
                         Console.Clear(); 
-                        Console.Write("Enter Student ID to delete: ");
+                        Console.Write("Enter vendor ID to delete: ");
                         var deleteId = Console.ReadLine();
-                        Console.WriteLine("=======DELETING STUDENT RECORD======= ");
-                        if (StudentServiceRepository.DeleteStudent(deleteId))
+                        Console.WriteLine("=======DELETING VENDOR RECORD======= ");
+                        if (VendorServiceRepository.DeleteVendor(deleteId))
                         {
-                            Console.WriteLine("\nStudent deleted successfully!");
+                            Console.WriteLine("\nVendor deleted successfully!");
                         }
                         else
                         {
-                            Console.WriteLine("\nStudent not found.");
+                            Console.WriteLine("\nVendor not found.");
                         }
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
                         break;
-
+                    
                     case "5":
                         //Exit to main menu
                         running = false;
@@ -154,5 +158,4 @@ public static class StudentUserInputHandler
             }
         }
     }
-}
-   
+}  
